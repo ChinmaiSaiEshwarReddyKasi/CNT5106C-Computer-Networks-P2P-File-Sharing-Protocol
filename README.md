@@ -6,14 +6,14 @@ In this project we have a group of independent computers that behave as a distri
 
 These computers, that act as peers, search and download the missing parts of the required file by requesting and connecting to the participating peer that has it, while also sharing the parts that they have.
 
-##Protocol:
+## Protocol:
 
 - In this project, we use TCP protocol to establish connection between peers wanting to share files with each other
 - To share files, the peers first send a handshake message to each other, consisting of the header, zero bits and peer ID.
 - Then a stream of data messages are sent which consists of message length, type and payload.
 - There are various types of payloads like piece and bitfield. The types of messages are have, bitfield, choke, unchoke, interested, not interested, request and piece
 
-##Working:
+## Working:
 
 - The peers are started by startRemotePeers in the order that is specified in the PeerInfo config file, and the peerProcess takes the peer ID as a parameter.
 - The peer that just started is supposed to make a TCP with every peer that is participating in the file sharing and has started before it.
@@ -22,7 +22,7 @@ These computers, that act as peers, search and download the missing parts of the
 - The first peer that is started, just listens on the port specified in the PeerInfo file as there are no other peers to connect to.
 - Also, we maintain a log every peer for when they establish a TCP connection to another peer, when they change their preferred neighbours, when they change their optimistically unchoked neighbour, when they are choked or unchoked by another peer or when they receive have/interested/not interested messages and when they finish downloading a piece or the complete file.
 
-##File Sharing:
+## File Sharing:
 
 If peer requires a file, it issues a search for the file using its filename, or some keyword along with a hop count of 1
 
